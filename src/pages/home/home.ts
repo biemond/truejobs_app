@@ -12,7 +12,7 @@ import { LabelPage } from '../label/label';
 })
 export class HomePage {
 
-  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key=AIzaSyBdtXGJesZvK6p3jPCd6JFcVcf9gsTYEbQ&fetchImages=true&status=live&view=READER'; //&fetchBodies=false';
+  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key=AIzaSyBdtXGJesZvK6p3jPCd6JFcVcf9gsTYEbQ&fetchImages=true&status=live&view=READER&maxResults=20'; //&fetchBodies=false';
   items: any;
 
   constructor(public navCtrl: NavController,
@@ -25,12 +25,42 @@ export class HomePage {
 
   refreshData(){
     console.log('RefreshData');
+    this.items = [];
+
     this.http.get(this.url)
       .map(res => res.json())
       .subscribe(data => {
-          this.items = data.items;
-          console.log(this.items);
-      });
+          var nextToken = data.nextPageToken;
+          console.log("nexttoken" + nextToken);
+          var i;
+          var checksLen = data.items.length
+          for (i = 0; i < checksLen; i += 1) {
+            this.items[i] = data.items[i];
+          }
+
+          if(nextToken != null) { 
+            this.http.get(this.url + "&pageToken=" + nextToken)
+            .map(res => res.json())
+            .subscribe(data => {
+                console.log("get new data");
+                if (data.nextPageToken == null) {
+                  nextToken = data.nextPageToken;
+                } else {
+                  nextToken = null;
+                }
+                
+                var a;
+                var checksLen2 = this.items.length
+                var checksLen = data.items.length
+                console.log(checksLen2);
+                console.log(checksLen);
+                for (a = 0; a < checksLen; a += 1) {
+                  this.items[a+checksLen2] = data.items[a];
+                }
+            });
+          }
+        });
+       
   }
 
   itemTapped(event, item) {
