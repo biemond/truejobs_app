@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { JobItemPage } from '../job-item/job-item';
+import { LabelPage } from '../label/label';
 
 @Component({
   selector: 'page-home',
@@ -34,6 +35,10 @@ export class HomePage {
 
   itemTapped(event, item) {
       this.navCtrl.push(JobItemPage, { item: item });
+  }
+
+  labelTapped(event, label) {
+    this.navCtrl.push(LabelPage, { label: label });
   }
 
 }

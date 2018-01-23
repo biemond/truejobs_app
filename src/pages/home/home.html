@@ -19,11 +19,10 @@
         <h2>{{item.title}}</h2>
       </button>
 
-
       <ion-row>
         <ion-col>
-          <button *ngFor="let label of item.labels" ion-button outline item-end icon-left>
-            <ion-icon name="star"></ion-icon>
+          <button *ngFor="let label of item.labels" (click)="labelTapped($event, label)" ion-button outline item-end icon-left>
+            <ion-icon name="albums"></ion-icon>
             {{label}}
           </button>
         </ion-col>
