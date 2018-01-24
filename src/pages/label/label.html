@@ -1,32 +1,26 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>{{selectedItem}}</ion-title>
+    <ion-title>{{label}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content padding>
-    <ion-list [virtualScroll]="items" approxItemHeight="360px">
-      <ion-card *virtualItem="let item">
-  
-        <button ion-item (click)="itemTapped($event, item)">
-          <ion-avatar item-left>
-            <img src="{{item.images[0].url}}">
-          </ion-avatar>
-          <h2>{{item.title}}</h2>
-        </button>
-  
-        <ion-row>
-          <ion-col>
-            <ion-label>Location {{item.location.name}}</ion-label>
-          </ion-col>
-          <ion-col center text-center>
-            <ion-datetime displayFormat="MMMM DD, YYYY" [(ngModel)]="item.published"></ion-datetime>
-          </ion-col>
-        </ion-row>
-  
-      </ion-card>
-    </ion-list>
-  
-  </ion-content>
+  <ion-list [virtualScroll]="items" approxItemHeight="360px">
+    <ion-card *virtualItem="let item">
+      <button ion-item (click)="itemTapped($event, item.id, item.title)">
+        <ion-avatar item-left>
+          <img src="{{item.images[0].url}}">
+        </ion-avatar>
+        {{item.title}}
+      </button>
+
+      <ion-item>
+        <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="item.published"></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf=item.location>
+        <ion-icon name="navigate"></ion-icon>
+        {{item.location.name | limitTo: 40 }}
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

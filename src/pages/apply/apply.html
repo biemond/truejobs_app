@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Apply for job</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Job: {{title}}</ion-label>
+    </ion-item>
+
+    <ion-item *ngFor="let label of item.labels">
+      <ion-label>Label: {{label}}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf=item.location>>
+      <ion-label>Location: {{item.location.name | limitTo: 60 }}</ion-label>
+    </ion-item>
+    <ion-item-divider color="light">Contact information</ion-item-divider>
+    <ion-item>
+      <ion-label floating>Candidate Name</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Contact Number</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Alternate Number</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Your location</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item-divider color="light">Skills</ion-item-divider>
+    <ion-item>
+      <ion-label>English</ion-label>
+      <ion-select [(ngModel)]="english">
+        <ion-option value="excellent">Excellent</ion-option>
+        <ion-option value="fluent">Fluent</ion-option>
+        <ion-option value="good">Good</ion-option>
+        <ion-option value="average">Average</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Qualification</ion-label>
+      <ion-select [(ngModel)]="qualification">
+        <ion-option value="10">10th</ion-option>
+        <ion-option value="12">12th / HSC / Diploma</ion-option>
+        <ion-option value="graduate">Graduate</ion-option>
+        <ion-option value="post">Post Graduate</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Experience</ion-label>
+      <ion-select [(ngModel)]="experience">
+        <ion-option value="fresh">Fresher</ion-option>
+        <ion-option value="1">1-2 Years</ion-option>
+        <ion-option value="2+">2-5 Years</ion-option>
+        <ion-option value="above">Above 5 Years</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Type Skills You Have(eg. Tally. Sip. Oracle. APEX</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Have You All The Skills Required In Job</ion-label>
+      <ion-checkbox color="dark" checked="false"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Comment</ion-label>
+        <ion-input type="text" value=""></ion-input>
+      </ion-item>
+  
+
+  </ion-list>
+  <button ion-button>Submit</button>
+
+</ion-content>

@@ -1,12 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{selectedItem.title}}</ion-title>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end>
+        <button ion-button primary (click)="apply($event, title, selectedItem)">
+        Apply here
+      </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-grid>
-    <ion-row responsive-sm *ngIf="selectedItem" class="selection">
+    <ion-row responsive-sm *ngIf="selectedItem">
       <div [innerHTML]="selectedItem.content"></div>
     </ion-row>
   </ion-grid>

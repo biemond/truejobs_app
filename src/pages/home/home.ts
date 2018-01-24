@@ -12,7 +12,7 @@ import { LabelPage } from '../label/label';
 })
 export class HomePage {
 
-  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key=AIzaSyBdtXGJesZvK6p3jPCd6JFcVcf9gsTYEbQ&fetchImages=true&status=live&view=READER&maxResults=20'; //&fetchBodies=false';
+  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key=AIzaSyBdtXGJesZvK6p3jPCd6JFcVcf9gsTYEbQ&fetchImages=true&status=live&view=READER&fetchBodies=false&maxResults=20'; //&fetchBodies=false';
   items: any;
 
   constructor(public navCtrl: NavController,
@@ -32,11 +32,7 @@ export class HomePage {
       .subscribe(data => {
           var nextToken = data.nextPageToken;
           console.log("nexttoken" + nextToken);
-          var i;
-          var checksLen = data.items.length
-          for (i = 0; i < checksLen; i += 1) {
-            this.items[i] = data.items[i];
-          }
+          this.items = data.items;
 
           if(nextToken != null) { 
             this.http.get(this.url + "&pageToken=" + nextToken)
@@ -63,8 +59,8 @@ export class HomePage {
        
   }
 
-  itemTapped(event, item) {
-      this.navCtrl.push(JobItemPage, { item: item });
+  itemTapped(event, item, title) {
+      this.navCtrl.push(JobItemPage, { item: item, title: title });
   }
 
   labelTapped(event, label) {

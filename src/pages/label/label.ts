@@ -10,19 +10,17 @@ import { JobItemPage } from '../job-item/job-item';
 })
 export class LabelPage {
 
-  selectedItem: any;
-  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key=AIzaSyBdtXGJesZvK6p3jPCd6JFcVcf9gsTYEbQ&fetchImages=true&status=live&view=READER';
+  label: string;
+  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key=AIzaSyBdtXGJesZvK6p3jPCd6JFcVcf9gsTYEbQ&fetchImages=true&status=live&view=READER&fetchBodies=false&maxResults=20';
   items: any;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
               private http: Http,
               public platform: Platform) {
-      // If we navigated to this page, we will have an item available as a nav param
-      this.selectedItem = navParams.get('label');
-
+      this.label = navParams.get('label');
       platform.ready().then(() => {
-        this.refreshData();
+        this.refreshData(this.label);
       });
   }
 
@@ -30,17 +28,18 @@ export class LabelPage {
     console.log('ionViewDidLoad LabelPage');
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(JobItemPage, { item: item });
+  itemTapped(event, item, title) {
+    console.log('item: '+ item);
+    console.log('title:' + title);
+    this.navCtrl.push(JobItemPage, { item: item, title: title });
   }
 
-  refreshData(){
-    console.log('RefreshData');
-    this.http.get(this.url + "&labels=" + this.selectedItem)
+  refreshData(label){
+    console.log('RefreshData for labels');
+    this.http.get(this.url + "&labels=" + label)
       .map(res => res.json())
       .subscribe(data => {
           this.items = data.items;
-          console.log(this.items);
       });
   }
 
