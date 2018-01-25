@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 
 import { JobItemPage } from '../job-item/job-item';
 import { LabelPage } from '../label/label';
+import { GlobalVariable } from '../../app/globals';
 
 @Component({
   selector: 'page-home',

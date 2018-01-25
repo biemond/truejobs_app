@@ -3,6 +3,7 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ApplyPage } from '../apply/apply';
+import { GlobalVariable } from '../../app/globals';
 
 @Component({
   selector: 'page-job-item',
@@ -13,7 +14,7 @@ export class JobItemPage {
   selectedItem: any;
 
   url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts/'
-  key: string = '?key=AIzaSyBdtXGJesZvK6p3jPCd6JFcVcf9gsTYEbQ&fetchImages=true';
+  key: string = '?key='+GlobalVariable.API_KEY+'&fetchImages=true';
   title: string;
 
 

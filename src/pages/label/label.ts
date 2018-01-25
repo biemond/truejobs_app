@@ -3,6 +3,7 @@ import { NavController, Platform, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { JobItemPage } from '../job-item/job-item';
+import { GlobalVariable } from '../../app/globals';
 
 @Component({
   selector: 'page-label',
@@ -11,7 +12,7 @@ import { JobItemPage } from '../job-item/job-item';
 export class LabelPage {
 
   label: string;
-  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key=AIzaSyBdtXGJesZvK6p3jPCd6JFcVcf9gsTYEbQ&fetchImages=true&status=live&view=READER&fetchBodies=false&maxResults=20';
+  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key='+GlobalVariable.API_KEY+'&fetchImages=true&status=live&view=READER&fetchBodies=false&maxResults=20';
   items: any;
 
   constructor(private navCtrl: NavController,
