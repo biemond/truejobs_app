@@ -16,7 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {  TruncatePipe } from './app.pipe';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-
+import { HTTP } from '@ionic-native/http';
 
 @NgModule({
   declarations: [
@@ -47,6 +47,7 @@ import { ContactPage } from '../pages/contact/contact';
   providers: [
     StatusBar,
     SplashScreen,
+    HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
