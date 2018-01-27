@@ -17,6 +17,7 @@ import {  TruncatePipe } from './app.pipe';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HTTP } from '@ionic-native/http';
+import { BloggerProvider } from '../providers/blogger/blogger';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { HTTP } from '@ionic-native/http';
     StatusBar,
     SplashScreen,
     HTTP,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BloggerProvider
   ]
 })
 export class AppModule {}

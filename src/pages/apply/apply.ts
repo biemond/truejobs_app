@@ -75,12 +75,10 @@ export class ApplyPage {
       console.log("success!")
       this.skillValidationError = false;
       this.contactValidationError = false;
-      console.log(this.contactForm.value);
-      console.log(this.skillsForm.value);
 
       var newline = "\n";
       var body = "job title: " + this.title + newline +
-                 "location" + this.item.location.name + newline + newline;
+                 "location: " + this.item.location.name + newline + newline;
       body += "contact info: " + newline;          
       for (const field in this.contactForm.controls) { 
           const control = this.contactForm.get(field); 

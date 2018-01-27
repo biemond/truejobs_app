@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Platform, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { JobItemPage } from '../job-item/job-item';
-import { GlobalVariable } from '../../app/globals';
+import { BloggerProvider } from '../../providers/blogger/blogger'
 
 @Component({
   selector: 'page-label',
@@ -12,12 +10,11 @@ import { GlobalVariable } from '../../app/globals';
 export class LabelPage {
 
   label: string;
-  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key='+GlobalVariable.API_KEY+'&fetchImages=true&status=live&view=READER&fetchBodies=false&maxResults=20';
   items: any;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
-              private http: Http,
+              public blogger: BloggerProvider,
               public platform: Platform) {
       this.label = navParams.get('label');
       platform.ready().then(() => {
@@ -37,11 +34,12 @@ export class LabelPage {
 
   refreshData(label){
     console.log('RefreshData for labels');
-    this.http.get(this.url + "&labels=" + label)
-      .map(res => res.json())
-      .subscribe(data => {
-          this.items = data.items;
-      });
+    this.blogger.getAllJobsByLabel(this.label).then(data => {
+      this.items = data;
+      // console.log(this.items);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
 }

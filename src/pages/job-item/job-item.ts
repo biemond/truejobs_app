@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { ApplyPage } from '../apply/apply';
-import { GlobalVariable } from '../../app/globals';
+import { BloggerProvider } from '../../providers/blogger/blogger'
 
 @Component({
   selector: 'page-job-item',
@@ -12,15 +10,11 @@ import { GlobalVariable } from '../../app/globals';
 export class JobItemPage {
 
   selectedItem: any;
-
-  url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts/'
-  key: string = '?key='+GlobalVariable.API_KEY+'&fetchImages=true';
   title: string;
-
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
-              private http: Http,
+              public blogger: BloggerProvider,              
               public platform: Platform) {
     // If we navigated to this page, we will have an item available as a nav param
     var postid = navParams.get('item');
@@ -33,14 +27,12 @@ export class JobItemPage {
 
   refreshData(postid){
     console.log('GetPost');
-    console.log('url: '+this.url + postid + this.key)
-    this.http.get(this.url + postid + this.key)
-      .map(res => res.json())
-      .subscribe(data => {
-          console.log(data);
-          this.selectedItem = data;
-      });
-  }  
+    this.blogger.getPostById(postid).then(data => {
+      this.selectedItem = data;
+    }, (err) => {
+      console.log(err);
+    });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad JobItemPage');
