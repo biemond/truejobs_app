@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HTTP } from '@ionic-native/http';
 import { GlobalVariable } from '../../app/globals';
@@ -30,13 +29,13 @@ export class ApplyPage {
 
   contactForm: FormGroup;
   skillsForm: FormGroup;
-  submitAttempt: boolean;
+  contactValidationError: boolean;
+  skillValidationError: boolean;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
-    private http: Http,
     private http2: HTTP) {
 
     this.title = navParams.get('title');
@@ -63,24 +62,41 @@ export class ApplyPage {
 
 
   send() {
-    this.submitAttempt = true;
 
     if (!this.contactForm.valid) {
       console.log("contact not valid!")
+      this.contactValidationError = true;
     }
     else if (!this.skillsForm.valid) {
       console.log("skills not valid!")
+      this.skillValidationError = true;
     }
     else {
       console.log("success!")
+      this.skillValidationError = false;
+      this.contactValidationError = false;
       console.log(this.contactForm.value);
       console.log(this.skillsForm.value);
 
+      var newline = "\n";
+      var body = "job title: " + this.title + newline +
+                 "location" + this.item.location.name + newline + newline;
+      body += "contact info: " + newline;          
+      for (const field in this.contactForm.controls) { 
+          const control = this.contactForm.get(field); 
+          body += field + ": " + control.value + newline;
+      }
+      body +=  newline + "skills: " + newline;
+      for (const field in this.skillsForm.controls) { 
+        const control = this.skillsForm.get(field); 
+        body += field + ": " + control.value + newline
+      }
+
       let data = {
         "from": "India TrueJobs <mailgun@"+GlobalVariable.MAIL_DOMAIN+".mailgun.org>",
-        "to": "biemond@gmail.com",
+        "to": "biemond@gmail.com,maan.truejobs@gmail.com,maan@truejobsindia.com",
         "subject": "TrueJobs application " +this.title,
-        "text": "data: "
+        "text": body
       };
   
       let headers = {
@@ -95,7 +111,7 @@ export class ApplyPage {
         console.log(data.headers);
 
         let alert = this.alertCtrl.create({
-          title: 'Successful send the job application',
+          title: 'Successful send the job application to TrueJobs',
           subTitle: 'Everything went well',
           buttons: ['OK']
         });
@@ -106,6 +122,12 @@ export class ApplyPage {
         console.log(error.status);
         console.log(error.error); // error message as string
         console.log(error.headers);
+        let alert = this.alertCtrl.create({
+          title: 'Something went wrong',
+          subTitle: 'Please retry again',
+          buttons: ['OK']
+        });
+        alert.present();
       });
  
     }

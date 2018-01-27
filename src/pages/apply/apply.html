@@ -22,7 +22,8 @@
     <ion-item-divider color="light">Contact information</ion-item-divider>
 
     <form [formGroup]="contactForm">
-      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+      <p *ngIf="contactValidationError" style="color: #ea6153;">Please fill out all the contact details accurately.</p>
+      <p *ngIf="skillValidationError" style="color: #ea6153;">Please fill out all the skills details accurately.</p>
 
       <ion-item>
         <ion-label floating>Candidate Name</ion-label>
@@ -53,7 +54,8 @@
     <ion-item-divider color="light">Skills</ion-item-divider>
 
     <form [formGroup]="skillsForm">
-      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+      <p *ngIf="contactValidationError" style="color: #ea6153;">Please fill out all the contact details accurately.</p>
+      <p *ngIf="skillValidationError" style="color: #ea6153;">Please fill out all the skills details accurately.</p>
 
       <ion-item>
         <ion-label>English</ion-label>
