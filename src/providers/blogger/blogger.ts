@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
-
+import { HttpClient } from '@angular/common/http';
 import { GlobalVariable } from '../../app/globals';
 
 @Injectable()
@@ -13,19 +11,19 @@ export class BloggerProvider {
   keyPost: string = '?key='+GlobalVariable.API_KEY+'&fetchImages=true';
 
 
-  constructor(public http: Http) {
-    console.log('Hello BloggerProvider Provider');
+  constructor(public http: HttpClient) {
   }
 
   getAllJobs() {
     console.log("getAllJobs");
     return new Promise((resolve, reject) => {
       this.http.get(this.url)
-        .map(res => res.json())
         .subscribe(data => {
-          // var nextToken = data.nextPageToken;
-          // console.log("nexttoken" + nextToken);
-          resolve(data.items);
+          // console.log(data);
+          var nextToken = data['nextPageToken'];
+          console.log("nexttoken" + nextToken);
+          // console.log(data['items']);
+          resolve(data['items']);
         }, (err) => {
           reject(err);
         });
@@ -36,11 +34,10 @@ export class BloggerProvider {
     console.log("getAllJobsByLabel " + label);
     return new Promise((resolve, reject) => {
       this.http.get(this.url + "&labels=" + label)
-        .map(res => res.json())
         .subscribe(data => {
-          // var nextToken = data.nextPageToken;
+          // var nextToken = data['nextPageToken'];
           // console.log("nexttoken" + nextToken);
-          resolve(data.items);
+          resolve(data['items']);
         }, (err) => {
           reject(err);
         });
@@ -51,7 +48,6 @@ export class BloggerProvider {
     console.log("getPostById " + id);
     return new Promise((resolve, reject) => {
       this.http.get(this.urlPost + id + this.keyPost)
-        .map(res => res.json())
         .subscribe(data => {
           resolve(data);
         }, (err) => {
