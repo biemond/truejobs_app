@@ -11,6 +11,7 @@ export class JobItemPage {
 
   selectedItem: any;
   title: string;
+  content: string;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
@@ -29,6 +30,9 @@ export class JobItemPage {
     console.log('GetPost');
     this.blogger.getPostById(postid).then(data => {
       this.selectedItem = data;
+      var tempContent: string = data['content'];
+      this.content = tempContent.substring(0,tempContent.indexOf("&nbsp; &nbsp; &nbsp;"));
+      console.log(this.content);
     }, (err) => {
       console.log(err);
     });
