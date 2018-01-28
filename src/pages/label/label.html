@@ -8,7 +8,7 @@
   <ion-list [virtualScroll]="items" approxItemHeight="360px">
     <ion-card *virtualItem="let item">
       <button ion-item (click)="itemTapped($event, item.id, item.title)">
-        <ion-avatar item-left>
+        <ion-avatar *ngIf=item.images item-left>
           <img src="{{item.images[0].url}}">
         </ion-avatar>
         {{item.title}}

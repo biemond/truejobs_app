@@ -16,7 +16,7 @@
   <ion-list [virtualScroll]="items"  approxItemHeight="360px">
     <ion-card *virtualItem="let item">
       <div (click)="itemTapped($event, item.id, item.title)">
-        <img src="{{item.images[0].url}}" />
+        <img *ngIf=item.images src="{{item.images[0].url}}" />
         <div class="card-title">{{item.title}}</div>
         <div class="card-subtitle" *ngIf=item.location>{{item.location.name | limitTo: 60 }}</div>
       </div>
