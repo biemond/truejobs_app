@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform, NavParams } from 'ionic-angular';
 import { JobItemPage } from '../job-item/job-item';
 import { BloggerProvider } from '../../providers/blogger/blogger'
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 @Component({
   selector: 'page-label',
@@ -15,15 +16,20 @@ export class LabelPage {
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
               public blogger: BloggerProvider,
-              public platform: Platform) {
+              public platform: Platform,
+              private ga: GoogleAnalytics ) {
       this.label = navParams.get('label');
       platform.ready().then(() => {
         this.refreshData(this.label);
       });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LabelPage');
+  ionViewDidEnter() {
+    this.platform.ready().then(() => {
+          // Okay, so the platform is ready and our plugins are available.
+          this.ga.trackView("Label Page");
+          console.log("Label Page enter");
+    });
   }
 
   itemTapped(event, item, title) {

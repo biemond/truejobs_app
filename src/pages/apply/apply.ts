@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import 'rxjs/add/operator/map';
 import { HTTP } from '@ionic-native/http';
 import { GlobalVariable } from '../../app/globals';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 @Component({
   selector: 'page-apply',
@@ -36,7 +37,9 @@ export class ApplyPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
-    private http2: HTTP) {
+    private http2: HTTP,
+    private ga: GoogleAnalytics,
+    public platform: Platform ) {
 
     this.title = navParams.get('title');
     this.item = navParams.get('item');
@@ -131,8 +134,12 @@ export class ApplyPage {
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ApplyPage');
+  ionViewDidEnter() {
+    this.platform.ready().then(() => {
+          // Okay, so the platform is ready and our plugins are available.
+          this.ga.trackView("Apply Job Page");
+          console.log("Apply Job Page enter");
+    });
   }
 
 }

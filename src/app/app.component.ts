@@ -8,6 +8,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { AboutPage } from '../pages/about/about';
 import { OneSignal } from '@ionic-native/onesignal';
 import { GlobalVariable } from './globals';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +23,8 @@ export class MyApp {
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private notification: OneSignal) {
+              private notification: OneSignal,
+              private ga: GoogleAnalytics) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -52,6 +54,18 @@ export class MyApp {
             // your code to handle after Notification opened
         });
         this.notification.endInit();
+
+        console.log('Google analytics is starting now');
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        this.ga.startTrackerWithId('UA-2832203-11', 5 ).then(() => {
+           console.log('Google analytics is ready now');
+           // GoogleAnalytics.debugMode();
+           this.ga.setAllowIDFACollection(false);
+           // Tracker is ready
+           // You can now track pages or set additional information such as AppVersion or UserId
+        }).catch(e => console.log('Error starting GoogleAnalytics', e));
+
       }
     });
   }

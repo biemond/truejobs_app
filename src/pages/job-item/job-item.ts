@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { ApplyPage } from '../apply/apply';
 import { BloggerProvider } from '../../providers/blogger/blogger'
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 @Component({
   selector: 'page-job-item',
@@ -16,7 +17,8 @@ export class JobItemPage {
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
               public blogger: BloggerProvider,              
-              public platform: Platform) {
+              public platform: Platform,
+              private ga: GoogleAnalytics ) {
     // If we navigated to this page, we will have an item available as a nav param
     var postid = navParams.get('item');
     this.title = navParams.get('title');
@@ -38,8 +40,12 @@ export class JobItemPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad JobItemPage');
+  ionViewDidEnter() {
+    this.platform.ready().then(() => {
+          // Okay, so the platform is ready and our plugins are available.
+          this.ga.trackView("JobItem Page");
+          console.log("JobItem Page enter");
+    });
   }
 
   apply(event, title, item) {

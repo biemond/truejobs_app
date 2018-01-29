@@ -19,6 +19,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HTTP } from '@ionic-native/http';
 import { BloggerProvider } from '../providers/blogger/blogger';
 import { OneSignal } from '@ionic-native/onesignal';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { OneSignal } from '@ionic-native/onesignal';
     StatusBar,
     SplashScreen,
     OneSignal,
+    GoogleAnalytics,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BloggerProvider
