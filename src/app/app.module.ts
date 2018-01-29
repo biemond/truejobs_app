@@ -18,6 +18,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HTTP } from '@ionic-native/http';
 import { BloggerProvider } from '../providers/blogger/blogger';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { BloggerProvider } from '../providers/blogger/blogger';
   providers: [
     StatusBar,
     SplashScreen,
+    OneSignal,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BloggerProvider

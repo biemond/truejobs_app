@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ContactPage } from '../pages/contact/contact';
 import { AboutPage } from '../pages/about/about';
+import { OneSignal } from '@ionic-native/onesignal';
+import { GlobalVariable } from './globals';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +19,10 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              private notification: OneSignal) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -35,6 +40,19 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      if (this.platform.is('cordova')) {
+        this.notification.startInit(GlobalVariable.ONE_SIGNAL, GlobalVariable.PUSH_GOOGLE_ID);
+        this.notification.inFocusDisplaying(this.notification.OSInFocusDisplayOption.Notification);
+        this.notification.setSubscription(true);
+        this.notification.handleNotificationReceived().subscribe(() => {
+            // your code after Notification received.
+        });
+        this.notification.handleNotificationOpened().subscribe(() => {
+            // your code to handle after Notification opened
+        });
+        this.notification.endInit();
+      }
     });
   }
 
