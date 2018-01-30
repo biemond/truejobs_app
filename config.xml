@@ -92,4 +92,6 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.5" />
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
+    <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
+    <allow-navigation href="http://172.20.10.3:8100" />
 </widget>

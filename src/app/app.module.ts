@@ -20,6 +20,7 @@ import { HTTP } from '@ionic-native/http';
 import { BloggerProvider } from '../providers/blogger/blogger';
 import { OneSignal } from '@ionic-native/onesignal';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { AppVersion } from '@ionic-native/app-version';  
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
     SplashScreen,
     OneSignal,
     GoogleAnalytics,
+    AppVersion,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BloggerProvider
