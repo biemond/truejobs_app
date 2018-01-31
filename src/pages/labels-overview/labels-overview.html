@@ -12,7 +12,7 @@
 <ion-content padding>
 
   <ion-item text-wrap>
-    <button *ngFor="let label of labels" (click)="labelTapped($event, label.term)" ion-button outline>
+    <button *ngFor="let label of labels | orderBy : ['+term']" (click)="labelTapped($event, label.term)" ion-button outline>
       <ion-icon name="albums"></ion-icon>
       {{label.term}}
     </button>

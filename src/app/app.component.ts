@@ -7,8 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { ContactPage } from '../pages/contact/contact';
 import { AboutPage } from '../pages/about/about';
 import { LabelsOverviewPage } from '../pages/labels-overview/labels-overview';
+import { NotificationsPage } from '../pages/notifications/notifications';
 
-import { OneSignal } from '@ionic-native/onesignal';
 import { GlobalVariable } from './globals';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
@@ -25,7 +25,6 @@ export class MyApp {
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private notification: OneSignal,
               private ga: GoogleAnalytics) {
     this.initializeApp();
 
@@ -33,6 +32,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Select by Labels', component: LabelsOverviewPage},
+      // { title: 'Notifications', component: NotificationsPage},
       { title: 'Contact', component: ContactPage },
       { title: 'About', component: AboutPage },
     ];
@@ -47,16 +47,23 @@ export class MyApp {
       this.splashScreen.hide();
 
       if (this.platform.is('cordova')) {
-        this.notification.startInit(GlobalVariable.ONE_SIGNAL, GlobalVariable.PUSH_GOOGLE_ID);
-        this.notification.inFocusDisplaying(this.notification.OSInFocusDisplayOption.Notification);
-        this.notification.setSubscription(true);
-        this.notification.handleNotificationReceived().subscribe(() => {
-            // your code after Notification received.
-        });
-        this.notification.handleNotificationOpened().subscribe(() => {
-            // your code to handle after Notification opened
-        });
-        this.notification.endInit();
+
+        var notificationOpenedCallback = function(jsonData) {
+          console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+          if (jsonData.notification.payload.additionalData != null) {
+            console.log("Here we access addtional data");
+            if (jsonData.notification.payload.additionalData.openURL != null) {
+              console.log("Here we access the openURL sent in the notification data");
+  
+            }
+          }
+        };
+  
+        window["plugins"].OneSignal
+          .startInit(GlobalVariable.ONE_SIGNAL, GlobalVariable.PUSH_GOOGLE_ID)
+          .inFocusDisplaying(window["plugins"].OneSignal.OSInFocusDisplayOption.Notification)
+          .handleNotificationOpened(notificationOpenedCallback)
+          .endInit();
 
         console.log('Google analytics is starting now');
         // Okay, so the platform is ready and our plugins are available.

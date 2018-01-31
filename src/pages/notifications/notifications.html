@@ -1,0 +1,20 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>notifications</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item *ngFor="let label of labels | orderBy : ['+term']">
+    <ion-label>{{label.term}}</ion-label>
+    <ion-checkbox color="dark" [(ngModel)]="check" (ionChange)="checkboxClicked(label.term)" ></ion-checkbox>
+  </ion-item>
+
+</ion-content>

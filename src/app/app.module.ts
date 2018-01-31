@@ -10,16 +10,18 @@ import { JobItemPage } from '../pages/job-item/job-item';
 import { LabelPage } from '../pages/label/label';
 import { ApplyPage } from '../pages/apply/apply';
 import { LabelsOverviewPage } from '../pages/labels-overview/labels-overview';
+import { NotificationsPage } from '../pages/notifications/notifications';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { OrderBy } from './orderby.pipe';
 import { TruncatePipe } from './app.pipe';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HTTP } from '@ionic-native/http';
 import { BloggerProvider } from '../providers/blogger/blogger';
-import { OneSignal } from '@ionic-native/onesignal';
+
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { AppVersion } from '@ionic-native/app-version';  
 
@@ -30,10 +32,12 @@ import { AppVersion } from '@ionic-native/app-version';
     JobItemPage,
     LabelPage,
     TruncatePipe,
+    OrderBy,
     ApplyPage,
     AboutPage,
     ContactPage,
-    LabelsOverviewPage
+    LabelsOverviewPage,
+    NotificationsPage
   ],
   imports: [
     BrowserModule,
@@ -49,12 +53,12 @@ import { AppVersion } from '@ionic-native/app-version';
     ApplyPage,
     AboutPage,
     ContactPage,
-    LabelsOverviewPage
+    LabelsOverviewPage,
+    NotificationsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    OneSignal,
     GoogleAnalytics,
     AppVersion,
     HTTP,

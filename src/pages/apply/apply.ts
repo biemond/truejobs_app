@@ -137,7 +137,7 @@ export class ApplyPage {
   ionViewDidEnter() {
     this.platform.ready().then(() => {
           // Okay, so the platform is ready and our plugins are available.
-          this.ga.trackView("Apply Job Page");
+          this.ga.trackView("Apply Job Page for "+ this.title);
           console.log("Apply Job Page enter");
     });
   }

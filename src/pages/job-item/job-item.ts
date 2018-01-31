@@ -43,7 +43,7 @@ export class JobItemPage {
   ionViewDidEnter() {
     this.platform.ready().then(() => {
           // Okay, so the platform is ready and our plugins are available.
-          this.ga.trackView("JobItem Page");
+          this.ga.trackView("JobItem Page for " + this.title);
           console.log("JobItem Page enter");
     });
   }
