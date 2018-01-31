@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { JobItemPage } from '../pages/job-item/job-item';
 import { LabelPage } from '../pages/label/label';
 import { ApplyPage } from '../pages/apply/apply';
+import { LabelsOverviewPage } from '../pages/labels-overview/labels-overview';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +32,8 @@ import { AppVersion } from '@ionic-native/app-version';
     TruncatePipe,
     ApplyPage,
     AboutPage,
-    ContactPage
+    ContactPage,
+    LabelsOverviewPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { AppVersion } from '@ionic-native/app-version';
     LabelPage,
     ApplyPage,
     AboutPage,
-    ContactPage
+    ContactPage,
+    LabelsOverviewPage
   ],
   providers: [
     StatusBar,

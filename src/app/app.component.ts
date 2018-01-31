@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ContactPage } from '../pages/contact/contact';
 import { AboutPage } from '../pages/about/about';
+import { LabelsOverviewPage } from '../pages/labels-overview/labels-overview';
+
 import { OneSignal } from '@ionic-native/onesignal';
 import { GlobalVariable } from './globals';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
@@ -30,6 +32,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'Select by Labels', component: LabelsOverviewPage},
       { title: 'Contact', component: ContactPage },
       { title: 'About', component: AboutPage },
     ];

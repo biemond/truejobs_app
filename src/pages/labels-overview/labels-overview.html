@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Our Job labels</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item text-wrap>
+    <button *ngFor="let label of labels" (click)="labelTapped($event, label.term)" ion-button outline>
+      <ion-icon name="albums"></ion-icon>
+      {{label.term}}
+    </button>
+  </ion-item>
+
+</ion-content>

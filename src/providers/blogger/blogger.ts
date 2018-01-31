@@ -7,12 +7,14 @@ export class BloggerProvider {
 
   url: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts?key=' + GlobalVariable.API_KEY + '&fetchImages=true&status=live&view=READER&fetchBodies=false&maxResults=20';
 
-  urlPost: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts/'
+  urlPost: string = 'https://www.googleapis.com/blogger/v3/blogs/6590972831374935792/posts/';
   keyPost: string = '?key='+GlobalVariable.API_KEY+'&fetchImages=true';
   items: any;
 
+
   constructor(public http: HttpClient) {
   }
+
 
   getAllJobs() {
     console.log("getAllJobs");
