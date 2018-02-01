@@ -32,7 +32,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Select by Labels', component: LabelsOverviewPage},
-      // { title: 'Notifications', component: NotificationsPage},
+      { title: 'Notifications', component: NotificationsPage},
       { title: 'Contact', component: ContactPage },
       { title: 'About', component: AboutPage },
     ];

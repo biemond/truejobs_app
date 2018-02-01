@@ -11,10 +11,14 @@
 
 
 <ion-content padding>
+  <ion-item>
+    <ion-label>Notification status</ion-label>
+    <ion-checkbox color="dark" [(ngModel)]="subscription" (ionChange)="subscriptionEnabledClicked()" ></ion-checkbox>
+  </ion-item>
 
-  <ion-item *ngFor="let label of labels | orderBy : ['+term']">
-    <ion-label>{{label.term}}</ion-label>
-    <ion-checkbox color="dark" [(ngModel)]="check" (ionChange)="checkboxClicked(label.term)" ></ion-checkbox>
+  <ion-item *ngFor="let label of labels | orderBy : ['+label']">
+    <ion-label>{{label.label}}</ion-label>
+    <ion-checkbox color="dark" [(ngModel)]="label.push" (ionChange)="checkboxClicked(label)" ></ion-checkbox>
   </ion-item>
 
 </ion-content>
