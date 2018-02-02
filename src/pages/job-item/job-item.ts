@@ -7,10 +7,10 @@ import {
   GoogleMaps,
   GoogleMap,
   GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker
+  GoogleMapOptions
+  // CameraPosition,
+  // MarkerOptions,
+  // Marker
  } from '@ionic-native/google-maps';
 
 @Component({
@@ -24,16 +24,15 @@ export class JobItemPage {
   content: string;
 
   map: GoogleMap;
-  lat: number = 30.7910575;
-  lng: number = 76.7265067;
+  lat: number;
+  lng: number;
 
 
   constructor(private navCtrl: NavController,
-              private navParams: NavParams,
+              public navParams: NavParams,
               public blogger: BloggerProvider,              
               public platform: Platform,
-              private ga: GoogleAnalytics,
-              private googleMaps: GoogleMaps ) {
+              private ga: GoogleAnalytics ) {
     // If we navigated to this page, we will have an item available as a nav param
     var postid = navParams.get('item');
     this.title = navParams.get('title');

@@ -8,10 +8,6 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row responsive-sm *ngIf="selectedItem">
-      <div [innerHTML]="content"></div>
-    </ion-row>
-  </ion-grid>
+  <ion-textarea [innerHTML]="content"></ion-textarea>
   <div id="map"></div>
 </ion-content>
