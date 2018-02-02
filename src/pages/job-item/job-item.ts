@@ -3,6 +3,15 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
 import { ApplyPage } from '../apply/apply';
 import { BloggerProvider } from '../../providers/blogger/blogger'
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker
+ } from '@ionic-native/google-maps';
 
 @Component({
   selector: 'page-job-item',
@@ -14,11 +23,17 @@ export class JobItemPage {
   title: string;
   content: string;
 
+  map: GoogleMap;
+  lat: number = 30.7910575;
+  lng: number = 76.7265067;
+
+
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
               public blogger: BloggerProvider,              
               public platform: Platform,
-              private ga: GoogleAnalytics ) {
+              private ga: GoogleAnalytics,
+              private googleMaps: GoogleMaps ) {
     // If we navigated to this page, we will have an item available as a nav param
     var postid = navParams.get('item');
     this.title = navParams.get('title');
@@ -32,13 +47,19 @@ export class JobItemPage {
     console.log('GetPost');
     this.blogger.getPostById(postid).then(data => {
       this.selectedItem = data;
+      this.lat = data['location']['lat'];
+      this.lng = data['location']['lng'];
       var tempContent: string = data['content'];
       this.content = tempContent.substring(0,tempContent.indexOf("&nbsp; &nbsp; &nbsp;"));
-      console.log(this.content);
+      if (this.platform.is('cordova')) {
+        this.loadMap();
+      }
+      // console.log(this.content);
     }, (err) => {
       console.log(err);
     });
   }
+
 
   ionViewDidEnter() {
     this.platform.ready().then(() => {
@@ -51,6 +72,50 @@ export class JobItemPage {
   apply(event, title, item) {
     console.log('title:' + title);
     this.navCtrl.push(ApplyPage, { title: title, item: item });
+  }
+
+  loadMap() {
+    console.log('loadmap');
+    let mapOptions: GoogleMapOptions = {
+        controls: {
+          compass: true,
+          myLocationButton: true,
+          indoorPicker: true,
+          zoom: true
+        },
+        camera: {
+          target: {
+            lat: this.lat,
+            lng: this.lng
+          },
+          tilt: 30,
+          zoom: 13,
+          bearing: 50
+        }
+    };
+    
+    this.map = GoogleMaps.create('map', mapOptions);
+    console.log('done');
+    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+      console.log('Map is ready!');
+
+      // Now you can use all methods safely.
+      this.map.addMarker({
+        title: this.title,
+        icon: 'blue',
+        animation: 'DROP',
+        position: {
+          lat: this.lat,
+          lng: this.lng
+        }
+      }).then(marker => {
+        marker.on(GoogleMapsEvent.MARKER_CLICK)
+          .subscribe(() => {
+            marker.showInfoWindow();
+          });
+      });
+    });        
+
   }
 
 }

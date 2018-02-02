@@ -24,6 +24,7 @@ import { BloggerProvider } from '../providers/blogger/blogger';
 
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { AppVersion } from '@ionic-native/app-version';  
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AppVersion } from '@ionic-native/app-version';
     GoogleAnalytics,
     AppVersion,
     HTTP,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BloggerProvider
   ]
