@@ -83,7 +83,6 @@
     <allow-navigation href="http://192.168.43.123:8100" />
     <allow-navigation href="http://192.168.225.151:8100" />
     <allow-navigation href="http://172.20.10.3:8100" />
-    <plugin name="cordova-plugin-advanced-http" spec="^1.9.1" />
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
@@ -94,11 +93,14 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.5" />
     <allow-navigation href="http://192.168.2.49:8100" />
-    <engine name="ios" spec="^4.5.4" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.2.2">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCUhiIBzsuI2vzmxbJIkzBFpra3lshCrnk" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyBl6SV_jY_sBFhw6EwXO-2l70GiXYBVe7k" />
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Show your location on the map" />
         <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="Trace your location on the map" />
     </plugin>
+    <allow-navigation href="http://192.168.2.174:8100" />
+    <plugin name="cordova-plugin-advanced-http" spec="^1.9.1" />
+    <engine name="ios" spec="^4.5.4" />
+    <engine name="android" spec="6.4.0" />
 </widget>
