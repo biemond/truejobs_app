@@ -20,9 +20,9 @@ export class LabelsOverviewPage {
               public navParams: NavParams,
               private ga: GoogleAnalytics,
               private http2: HTTP) {
-    platform.ready().then(() => {
-      this.getAllLabels();
-    });
+    // platform.ready().then(() => {
+    //   this.getAllLabels();
+    // });
   }
 
   labelTapped(event, label) {
@@ -51,6 +51,7 @@ export class LabelsOverviewPage {
           // Okay, so the platform is ready and our plugins are available.
           this.ga.trackView("Labels overview Page");
           console.log("Labels overview Page enter");
+          this.getAllLabels();
     });
   }
 }
