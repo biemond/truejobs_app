@@ -36,3 +36,4 @@ UserInterfaceState.xcuserstate
 
 
 src/app/globals.ts
+*.keystore
