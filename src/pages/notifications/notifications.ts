@@ -40,7 +40,7 @@ export class NotificationsPage {
     this.platform.ready().then(() => {
 
       if (this.platform.is('cordova')) {
-        // this.getAllLabels();
+        this.getAllLabels();
         window["plugins"].OneSignal.getPermissionSubscriptionState((status)=> {
           console.log("hasPrompted: "+ status.permissionStatus.hasPrompted);
           console.log("status: "+ status.permissionStatus.status);
@@ -49,7 +49,6 @@ export class NotificationsPage {
           console.log("userSubscriptionSetting: "+status.subscriptionStatus.userSubscriptionSetting);
           console.log("pushToken: "+status.subscriptionStatus.pushToken);
           console.log("userId: "+status.subscriptionStatus.userId);
- 
         });
       }
     });
@@ -110,9 +109,6 @@ export class NotificationsPage {
       // Okay, so the platform is ready and our plugins are available.
       this.ga.trackView("Notifications Page");
       console.log("Notifications Page enter");
-      if (this.platform.is('cordova')) {
-        this.getAllLabels();
-      }
     });
   }
 

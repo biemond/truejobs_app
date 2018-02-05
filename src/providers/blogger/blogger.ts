@@ -70,7 +70,10 @@ export class BloggerProvider {
     console.log("getAllJobsByLabelNextSet "+ token);
     this.http.get(this.url + "&labels=" + label + "&pageToken="+token)
       .subscribe(data => {
-        this.items.push(data['items']);
+        for (var i = 0; i < data['items'].length; i++) {
+          var length = this.items.length;
+          this.items[this.items.length] = data['items'][i];
+        }
         if (data['nextPageToken'] != null) {
           this.getAllJobsByLabelNextSet(label,data['nextPageToken']);
         } 
