@@ -8,9 +8,6 @@ import {
   GoogleMap,
   GoogleMapsEvent,
   GoogleMapOptions
-  // CameraPosition,
-  // MarkerOptions,
-  // Marker
  } from '@ionic-native/google-maps';
 
 @Component({
@@ -49,7 +46,11 @@ export class JobItemPage {
       this.lat = data['location']['lat'];
       this.lng = data['location']['lng'];
       var tempContent: string = data['content'];
-      this.content = tempContent.substring(0,tempContent.indexOf("&nbsp; &nbsp; &nbsp;"));
+      if ( tempContent.indexOf("&nbsp; &nbsp; &nbsp;") > 0 ) {
+        this.content = tempContent.substring(0,tempContent.indexOf("&nbsp; &nbsp; &nbsp;"));
+      } else {
+        this.content = tempContent;
+      }
       if (this.platform.is('cordova')) {
         this.loadMap();
       }
