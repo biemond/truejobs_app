@@ -35,14 +35,13 @@ export class HomePage {
     console.log('RefreshData');
     this.blogger.getAllJobs().then(data => {
       this.items = data;
-      // console.log(this.items);
     }, (err) => {
       console.log(err);
     });
   }
 
   itemTapped(event, item, title) {
-      this.navCtrl.push(JobItemPage, { item: item, title: title });
+    this.navCtrl.push(JobItemPage, { item: item, title: title });
   }
 
   labelTapped(event, label) {

@@ -15,7 +15,7 @@
       </button>
 
       <ion-item>
-        <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="item.published"></ion-datetime>
+        <ion-datetime disabled displayFormat="MMM DD, YYYY" [(ngModel)]="item.published"></ion-datetime>
       </ion-item>
       <ion-item *ngIf=item.location>
         <ion-icon name="navigate"></ion-icon>

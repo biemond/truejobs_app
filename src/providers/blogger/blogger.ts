@@ -23,6 +23,7 @@ export class BloggerProvider {
       this.http.get(this.url)
         .subscribe(data => {
           this.items = data['items'];
+          console.log("length " +this.items.length);
           if (data['nextPageToken'] != null ) {
             this.getAllJobsNextSet(data['nextPageToken']);
           }  
@@ -35,13 +36,17 @@ export class BloggerProvider {
 
   getAllJobsNextSet(token) {
     console.log("getAllJobsNextSet "+ token);
-    this.http.get(this.url + "&pageToken="+token)
-      .subscribe(data => {
-        this.items.push(data['items']);
-        if (data['nextPageToken'] != null) {
-          this.getAllJobsNextSet(data['nextPageToken']);
-        } 
-      });
+      this.http.get(this.url + "&pageToken="+token)
+        .subscribe(data => {
+          for (var i = 0; i < data['items'].length; i++) {
+            var length = this.items.length;
+            this.items[this.items.length] = data['items'][i];
+          }
+          console.log("length " +this.items.length);
+          if (data['nextPageToken'] != null) {
+            this.getAllJobsNextSet(data['nextPageToken']);
+          }
+        });
   }
 
   getAllJobsByLabel(label) {
