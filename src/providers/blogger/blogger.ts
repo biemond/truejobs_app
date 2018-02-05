@@ -39,7 +39,6 @@ export class BloggerProvider {
       this.http.get(this.url + "&pageToken="+token)
         .subscribe(data => {
           for (var i = 0; i < data['items'].length; i++) {
-            var length = this.items.length;
             this.items[this.items.length] = data['items'][i];
           }
           console.log("length " +this.items.length);
@@ -71,7 +70,6 @@ export class BloggerProvider {
     this.http.get(this.url + "&labels=" + label + "&pageToken="+token)
       .subscribe(data => {
         for (var i = 0; i < data['items'].length; i++) {
-          var length = this.items.length;
           this.items[this.items.length] = data['items'][i];
         }
         if (data['nextPageToken'] != null) {

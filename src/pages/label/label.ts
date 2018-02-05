@@ -14,7 +14,7 @@ export class LabelPage {
   items: any;
 
   constructor(private navCtrl: NavController,
-              private navParams: NavParams,
+              public navParams: NavParams,
               public blogger: BloggerProvider,
               public platform: Platform,
               private ga: GoogleAnalytics ) {
