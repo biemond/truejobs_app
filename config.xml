@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.india.truejobs" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>truejobs</name>
+    <name>TrueJobs India</name>
     <description>truejobs app.</description>
     <author email="biemond@gmail.com" href="http://http://www.truejobsindia.com/">Edwin Biemond</author>
     <content src="index.html" />
