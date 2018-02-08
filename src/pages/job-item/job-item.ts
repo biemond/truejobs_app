@@ -29,8 +29,7 @@ export class JobItemPage {
     public navParams: NavParams,
     public blogger: BloggerProvider,
     public platform: Platform,
-    private ga: GoogleAnalytics,
-    private googleMaps: GoogleMaps) {
+    private ga: GoogleAnalytics) {
     // If we navigated to this page, we will have an item available as a nav param
     var postid = navParams.get('item');
     this.title = navParams.get('title');
@@ -98,7 +97,7 @@ export class JobItemPage {
         }
       };
 
-      this.map = this.googleMaps.create('map', mapOptions);
+      this.map = GoogleMaps.create('map', mapOptions);
       console.log('done');
       this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
         console.log('Map is ready!');

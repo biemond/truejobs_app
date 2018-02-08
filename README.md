@@ -15,3 +15,6 @@
 ##Publish IOS
 - rvm use system
 - ionic cordova build ios --prod --release
+
+## lazy loading
+- npm install ng-lazyload-image --save

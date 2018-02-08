@@ -26,6 +26,8 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { AppVersion } from '@ionic-native/app-version';  
 import { GoogleMaps } from '@ionic-native/google-maps';
 
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -43,6 +45,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
   imports: [
     BrowserModule,
     HttpClientModule,
+    LazyLoadImageModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
