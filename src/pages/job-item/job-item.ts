@@ -56,7 +56,7 @@ export class JobItemPage {
       if (this.platform.is('cordova')) {
         this.loadMap();
       }
-      console.log(this.content);
+      // console.log(this.content);
     }, (err) => {
       console.log(err);
     });
@@ -117,7 +117,9 @@ export class JobItemPage {
               marker.showInfoWindow();
             });
         });
-      });
+      }).catch((r) => {
+        console.log('error maps: ' + JSON.stringify(r));
+      });;
     }
   }
 
