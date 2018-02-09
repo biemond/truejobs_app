@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { Component, NgZone } from '@angular/core';
+import { NavController, NavParams, Platform, Events } from 'ionic-angular';
 import { ApplyPage } from '../apply/apply';
 import { BloggerProvider } from '../../providers/blogger/blogger'
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
@@ -29,11 +29,20 @@ export class JobItemPage {
     public navParams: NavParams,
     public blogger: BloggerProvider,
     public platform: Platform,
-    private ga: GoogleAnalytics) {
+    private ga: GoogleAnalytics,
+    public events: Events,
+    private zone: NgZone ) {
     // If we navigated to this page, we will have an item available as a nav param
     var postid = navParams.get('item');
     this.title = navParams.get('title');
     console.log('postid: ' + postid)
+
+    this.events.subscribe('updateScreen', () => {
+      this.zone.run(() => {
+        console.log('force update the screen');
+      });
+    });
+
     platform.ready().then(() => {
       this.refreshData(postid);
     });
@@ -53,6 +62,8 @@ export class JobItemPage {
       } else {
         this.content = tempContent;
       }
+      //refresh
+      this.events.publish('updateScreen');
       if (this.platform.is('cordova')) {
         this.loadMap();
       }
@@ -61,7 +72,6 @@ export class JobItemPage {
       console.log(err);
     });
   }
-
 
   ionViewDidEnter() {
     this.platform.ready().then(() => {

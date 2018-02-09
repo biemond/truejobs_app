@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      India TrueJobs
+      TrueJobs India
     </ion-title>
     <ion-buttons end>
       <img alt="logo" height="40" src="assets/imgs/logo.png">
@@ -15,9 +15,8 @@
 <ion-content #container class="card-background-page">
   <ion-list [virtualScroll]="items" approxItemHeight="260px">
     <ion-card *virtualItem="let item">
-      <div height="200" width="300" (click)="itemTapped($event, item.id, item.title)">
+      <div height="200" (click)="itemTapped($event, item.id, item.title)">
         <img  *ngIf=item.images [defaultImage]="'assets/imgs/default.png'" [lazyLoad]="item.images[0].url" [scrollObservable]="container.ionScroll" />
-        <!-- <img height="200" *ngIf=item.images src="{{item.images[0].url}}" /> -->
         <div class="card-title">{{item.title}}</div>
         <div class="card-subtitle" *ngIf=item.location>{{item.location.name | limitTo: 60 }}</div>
       </div>
