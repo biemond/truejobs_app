@@ -63,7 +63,7 @@ export class JobItemPage {
         this.content = tempContent;
       }
       //refresh
-      this.events.publish('updateScreen');
+      // this.events.publish('updateScreen');
       if (this.platform.is('cordova')) {
         this.loadMap();
       }

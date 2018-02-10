@@ -40,6 +40,15 @@ export class HomePage {
     });
   }
 
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.refreshData();
+    setTimeout(() => {
+      console.log('Async refresh operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
   itemTapped(event, item, title) {
     this.navCtrl.push(JobItemPage, { item: item, title: title });
   }
@@ -47,5 +56,4 @@ export class HomePage {
   labelTapped(event, label) {
     this.navCtrl.push(LabelPage, { label: label });
   }
-
 }
