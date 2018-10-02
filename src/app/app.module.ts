@@ -27,6 +27,7 @@ import { AppVersion } from '@ionic-native/app-version';
 import { GoogleMaps } from '@ionic-native/google-maps';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     StatusBar,
     SplashScreen,
     GoogleAnalytics,
+    InAppBrowser,
     AppVersion,
     HTTP,
     GoogleMaps,

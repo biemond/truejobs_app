@@ -23,8 +23,9 @@
         "@ionic-native/app-version": "^4.5.3",
         "@ionic-native/core": "4.4.0",
         "@ionic-native/google-analytics": "^4.5.3",
-        "@ionic-native/google-maps": "^4.5.3",
+        "@ionic-native/google-maps": "^4.4.2",
         "@ionic-native/http": "^4.5.3",
+        "@ionic-native/in-app-browser": "^4.3.3",
         "@ionic-native/onesignal": "^4.5.3",
         "@ionic-native/splash-screen": "4.4.0",
         "@ionic-native/status-bar": "4.4.0",
@@ -36,7 +37,7 @@
         "cordova-plugin-device": "^1.1.7",
         "cordova-plugin-file": "^6.0.1",
         "cordova-plugin-google-analytics": "^1.8.3",
-        "cordova-plugin-googlemaps": "^2.2.2",
+        "cordova-plugin-googlemaps": "^2.1.1",
         "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
         "cordova-plugin-ionic-webview": "^1.1.16",
         "cordova-plugin-splashscreen": "^4.1.0",
@@ -45,6 +46,7 @@
         "ionic-angular": "3.9.2",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
+        "ng-lazyload-image": "^3.4.2",
         "onesignal-cordova-plugin": "^2.2.5",
         "rxjs": "5.5.2",
         "sw-toolbox": "3.6.0",
@@ -66,14 +68,12 @@
             "onesignal-cordova-plugin": {},
             "cordova-plugin-google-analytics": {},
             "cordova-plugin-app-version": {},
+            "cordova-plugin-advanced-http": {},
+            "cordova-plugin-inappbrowser": {},
             "cordova-plugin-googlemaps": {
                 "API_KEY_FOR_ANDROID": "AIzaSyCUhiIBzsuI2vzmxbJIkzBFpra3lshCrnk",
-                "API_KEY_FOR_IOS": "AIzaSyBl6SV_jY_sBFhw6EwXO-2l70GiXYBVe7k",
-                "LOCATION_WHEN_IN_USE_DESCRIPTION": "Show your location on the map",
-                "LOCATION_ALWAYS_USAGE_DESCRIPTION": "Trace your location on the map",
-                "PLAY_SERVICES_VERSION": "11.8.+"
-            },
-            "cordova-plugin-advanced-http": {}
+                "API_KEY_FOR_IOS": "AIzaSyBl6SV_jY_sBFhw6EwXO-2l70GiXYBVe7k"
+            }
         },
         "platforms": [
             "ios",
