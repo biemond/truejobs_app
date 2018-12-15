@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.india.truejobs" version="0.0.14" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.ionic.india.truejobs" version="0.0.15" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TrueJobs India</name>
     <description>truejobs app.</description>
     <author email="biemond@gmail.com" href="http://http://www.truejobsindia.com/">Edwin Biemond</author>
@@ -100,6 +100,6 @@
         <variable name="API_KEY_FOR_IOS" value="AIzaSyBl6SV_jY_sBFhw6EwXO-2l70GiXYBVe7k" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
-    <engine name="ios" spec="^4.5.4" />
+    <engine name="ios" spec="^4.5.5" />
     <engine name="android" spec="6.4.0" />
 </widget>
